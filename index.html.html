@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verificador de Tipo Sanguíneo</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Gotham, sans-serif;
+        }
+
+        h1 {
+            text-transform: uppercase;
+        }
+
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: green;
+            transform: scale(1.05);
+        }
+
+        #result {
+            color: green;
+            font-weight: bold;
+        }
+
+        #footer {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>VERIFICADOR DE TIPO SANGUÍNEO</h1>
+    
+    <p>Selecione seu tipo sanguíneo:</p>
+    
+    <label for="bloodType">Tipo Sanguíneo:</label>
+    <select id="bloodType">
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+    </select>
+    
+    <button id="checkButton" onclick="checkDonation()">Verificar</button>
+    
+    <p id="result"></p>
+
+    <p>Se você gostou do site, avalie:</p>
+    <button id="likeButton" onclick="likeSite()">Gostei</button>
+    
+    <div id="footer">
+        <p>Trabalho de Iniciação Científica</p>
+        <p>Aluno: Kaik Lucas</p>
+        <p>Escola de Referência em Ensino Médio de Panelas</p>
+    </div>
+    
+    <script>
+        function checkDonation() {
+            var bloodType = document.getElementById("bloodType").value;
+            var canDonate = "";
+            var canReceive = "";
+
+            switch (bloodType) {
+                case "A+":
+                    canDonate = "Você pode doar para A+ e AB+.";
+                    canReceive = "Você pode receber de A+, A-, O+ e O-.";
+                    break;
+                case "A-":
+                    canDonate = "Você pode doar para A+, A-, AB+ e AB-.";
+                    canReceive = "Você pode receber de A- e O-.";
+                    break;
+                case "B+":
+                    canDonate = "Você pode doar para B+ e AB+.";
+                    canReceive = "Você pode receber de B+, B-, O+ e O-.";
+                    break;
+                case "B-":
+                    canDonate = "Você pode doar para B+, B-, AB+ e AB-.";
+                    canReceive = "Você pode receber de B- e O-.";
+                    break;
+                case "AB+":
+                    canDonate = "Você pode doar para AB+.";
+                    canReceive = "Você pode receber de todos os tipos sanguíneos.";
+                    break;
+                case "AB-":
+                    canDonate = "Você pode doar para AB+ e AB-.";
+                    canReceive = "Você pode receber de A-, B-, AB- e O-.";
+                    break;
+                case "O+":
+                    canDonate = "Você pode doar para A+, B+, AB+ e O+.";
+                    canReceive = "Você pode receber de O+ e O-.";
+                    break;
+                case "O-":
+                    canDonate = "Você pode doar para A+, A-, B+, B-, AB+, AB- e O-.";
+                    canReceive = "Você pode receber de O-.";
+                    break;
+                default:
+                    canDonate = "Selecione um tipo sanguíneo válido.";
+                    canReceive = "Selecione um tipo sanguíneo válido.";
+                    break;
+            }
+            
+            document.getElementById("result").innerHTML = `<span style="color:green">${canDonate}</span><br><br><span style="color:blue">Você também pode receber: ${canReceive}</span>`;
+        }
+
+        function likeSite() {
+            alert("Obrigado por avaliar o site!");
+        }
+    </script>
+</body>
+</html>
